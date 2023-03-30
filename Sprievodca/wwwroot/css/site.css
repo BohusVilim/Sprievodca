@@ -1,0 +1,30 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.oblast {
+    margin-left: 20px;
+}
+
+.podoblast {
+    margin-left: 40px;
+}
+
+.sektor {
+    margin-left: 60px;
+}

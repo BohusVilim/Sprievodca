@@ -1,0 +1,37 @@
+﻿@model Sprievodca.Models.MainModels.Kraj
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Kraj</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nazov)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nazov)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Oblast)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.Oblast != null)
+            {
+                @foreach (var oblast in Model.Oblast)
+                {
+                    @Html.DisplayFor(model => oblast.Name)
+                    <br/>
+                }
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

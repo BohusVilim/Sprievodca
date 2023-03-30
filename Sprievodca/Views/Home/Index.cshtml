@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Sprievodca</h1>
+</div>
+
+@foreach (var kraj in ViewBag.kraj)
+{
+    <p><b>@kraj.Nazov</b></p>
+    @if (kraj.Oblast != null && kraj.Oblast.Count > 0)
+    {
+         @foreach (var oblast in kraj.Oblast)
+         {
+             @if (oblast.Name != null)
+             {
+                <p class="oblast">@oblast.Name</p>
+                @if (oblast.ExistPodOblast == true)
+                {
+                    @foreach (var podOblast in oblast.PodOblast)
+                    {
+                        <p class="podoblast"><i>- @podOblast.Name</i></p>
+                        @foreach (var sektor in podOblast.Sektor)
+                        {
+                            <p class="sektor">@sektor.Name</p>
+                            <img class="sektor" decoding="async" src="@("~/images/"+sektor.ImageName)" asp-append-version="true" width="250px" height="auto" />
+                        }
+                    }
+                }
+                @if (oblast.ExistPodOblast == false)
+                {
+                    @if (oblast.Sektor != null)
+                    {
+                        @foreach (var sektor in oblast.Sektor)
+                        {
+                            <p class ="podoblast"><i>- @sektor.Name</i></p>
+                            <img class="sektor" decoding="async" src="@("~/images/"+sektor.ImageName)" asp-append-version="true" width="250px" height="auto" />
+                        }
+                    }
+                }
+            }
+         }
+    }
+}        

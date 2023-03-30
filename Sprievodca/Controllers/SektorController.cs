@@ -89,6 +89,8 @@ namespace Sprievodca.Controllers
                     await sektor.ImageFile.CopyToAsync(fileStream);
                 }
 
+                sektor.Cesta = _context.Cesta.Where(c => c.SektorId == sektor.Id).ToList();
+
                 _context.Add(sektor);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

@@ -27,6 +27,13 @@
                             {
                                 <p class="sektor">- @sektor.Name</p>
                                 <img class="sektor" decoding="async" src="@("~/images/"+sektor.ImageName)" asp-append-version="true" width="250px" height="auto" />
+                                @if (sektor.Cesta != null)
+                                {
+                                    @foreach (var cesta in sektor.Cesta)
+                                    {
+                                        <p>@cesta.Number @cesta.Name</p>
+                                    }
+                                }
                             }
                         }
                     }

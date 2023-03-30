@@ -20,11 +20,14 @@
                 {
                     @foreach (var podOblast in oblast.PodOblast)
                     {
-                        <p class="podoblast"><i>- @podOblast.Name</i></p>
-                        @foreach (var sektor in podOblast.Sektor)
+                        <p class="podoblast"><i>@podOblast.Name</i></p>
+                        @if (podOblast.Sektor != null)
                         {
-                            <p class="sektor">@sektor.Name</p>
-                            <img class="sektor" decoding="async" src="@("~/images/"+sektor.ImageName)" asp-append-version="true" width="250px" height="auto" />
+                            @foreach (var sektor in podOblast.Sektor)
+                            {
+                                <p class="sektor">- @sektor.Name</p>
+                                <img class="sektor" decoding="async" src="@("~/images/"+sektor.ImageName)" asp-append-version="true" width="250px" height="auto" />
+                            }
                         }
                     }
                 }
@@ -34,7 +37,7 @@
                     {
                         @foreach (var sektor in oblast.Sektor)
                         {
-                            <p class ="podoblast"><i>- @sektor.Name</i></p>
+                            <p class ="podoblast">- @sektor.Name</p>
                             <img class="sektor" decoding="async" src="@("~/images/"+sektor.ImageName)" asp-append-version="true" width="250px" height="auto" />
                         }
                     }

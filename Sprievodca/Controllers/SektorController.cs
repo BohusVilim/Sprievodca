@@ -25,7 +25,7 @@ namespace Sprievodca.Controllers
         // GET: Sektor
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Sektor.ToListAsync());
+              return View(await _context.Sektor.Include(a => a.Oblast).Include(b => b.PodOblast).Include(c => c.Cesta).ToListAsync());
         }
 
         // GET: Sektor/Details/5

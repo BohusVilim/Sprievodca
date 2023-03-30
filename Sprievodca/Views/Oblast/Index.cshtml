@@ -20,7 +20,7 @@
                 @Html.DisplayNameFor(model => model.Kraj)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PodOblast)
+                @Html.DisplayNameFor(model => model.PodOblast) / @Html.DisplayNameFor(model => model.Sektor)
             </th>
         </tr>
     </thead>
@@ -31,7 +31,16 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                <a asp-area="" asp-controller="PodOblast" asp-action="Create">Vytvor podoblasť</a> |
+                    @if (item.ExistPodOblast == true)
+                    {
+                        <a asp-area="" asp-controller="PodOblast" asp-action="Create">Vytvor podoblasť |</a>
+                    }
+
+                    @if (item.ExistPodOblast == false)
+                    {
+                        <a asp-area="" asp-controller="Sektor" asp-action="Create">Vytvor sektor |</a>
+                    }
+                
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>

@@ -22,7 +22,7 @@ namespace Sprievodca.Controllers
         // GET: Cesta
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Cesta.ToListAsync());
+              return View(await _context.Cesta.Include(a => a.Sektor).ToListAsync());
         }
 
         // GET: Cesta/Details/5
@@ -57,10 +57,12 @@ namespace Sprievodca.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Grade,Lenght,Style,Description,Author,Sektor,SektorId")] Cesta cesta)
+        public async Task<IActionResult> Create([Bind("Id,Number,Name,Grade,Lenght,Style,Description,Author,Year,Sektor,SektorId")] Cesta cesta)
         {
+
             cesta.Sektor = _context.Sektor.Find(cesta.SektorId);
 
+            ModelState.Remove("Sektor");
             if (ModelState.IsValid)
             {
                 _context.Add(cesta);

@@ -46,6 +46,9 @@ namespace Sprievodca.Controllers
         // GET: Cesta/Create
         public IActionResult Create()
         {
+            var sektory = _context.Sektor.ToList();
+            ViewBag.Sektory = new SelectList(sektory, "Id", "Name");
+
             return View();
         }
 
@@ -54,14 +57,19 @@ namespace Sprievodca.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Grade,Lenght,Style,Description,Author,SektorId")] Cesta cesta)
+        public async Task<IActionResult> Create([Bind("Id,Name,Grade,Lenght,Style,Description,Author,Sektor,SektorId")] Cesta cesta)
         {
+            cesta.Sektor = _context.Sektor.Find(cesta.SektorId);
+
             if (ModelState.IsValid)
             {
                 _context.Add(cesta);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            var sektory = _context.Sektor.ToList();
+            ViewBag.Sektory = new SelectList(sektory, "Id", "Name", cesta.SektorId);
+
             return View(cesta);
         }
 

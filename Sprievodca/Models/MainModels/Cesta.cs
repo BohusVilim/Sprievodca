@@ -5,7 +5,7 @@ namespace Sprievodca.Models.MainModels
     public class Cesta : BaseIdentity
     {
         public string? Name { get; set; }
-        public int Grade { get; set; }
+        public string Grade { get; set; } = null!;
         public int Lenght { get; set; }
         public string? Style { get; set; }
         public string? Description { get; set; }

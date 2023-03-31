@@ -22,6 +22,7 @@ namespace Sprievodca.Controllers
             ViewBag.oblast = _context.Oblast.ToList();
             ViewBag.podOblast = _context.PodOblast.ToList();
             ViewBag.sektor = _context.Sektor.ToList();
+            ViewBag.Cesta = _context.Cesta.ToList();
 
 
 

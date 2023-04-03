@@ -37,6 +37,8 @@ namespace Sprievodca.Controllers
             }
 
             var sektor = await _context.Sektor
+                .Include(a => a.PodOblast)
+                .Include(b => b.Oblast)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (sektor == null)
             {

@@ -16,6 +16,18 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Sektor)
+        </dt>
+        <dd class = "col-sm-10">
+            @if (Model.Sektor != null)
+            {
+                @foreach (var sektor in Model.Sektor)
+                {
+                    @sektor.Name
+                }
+            }
+        </dd>
     </dl>
 </div>
 <div>

@@ -22,12 +22,24 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ImageName)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PodOblastId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PodOblastId)
-        </dd>
+        @if (Model.PodOblast != null)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PodOblast)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PodOblast.Name)
+            </dd>
+        }
+        @if (Model.Oblast != null)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Oblast)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Oblast.Name)
+            </dd>
+        }
     </dl>
 </div>
 <div>

@@ -33,7 +33,7 @@ namespace Sprievodca.Controllers
                 return NotFound();
             }
 
-            var podOblast = await _context.PodOblast
+            var podOblast = await _context.PodOblast.Include(a => a.Sektor)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (podOblast == null)
             {

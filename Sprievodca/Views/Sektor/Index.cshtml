@@ -19,7 +19,7 @@
                 @Html.DisplayNameFor(model => model.ImageName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PodOblast)
+                @Html.DisplayNameFor(model => model.PodOblast) / @Html.DisplayNameFor(model => model.Oblast)
             </th>
             <th></th>
         </tr>
@@ -33,9 +33,18 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ImageName)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PodOblast.Name)
-            </td>
+                @if (item.PodOblast != null)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PodOblast.Name)
+                    </td>
+                }
+                @if (item.Oblast != null)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Oblast.Name)
+                    </td>
+                }
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

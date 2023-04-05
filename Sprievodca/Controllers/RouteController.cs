@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Sprievodca.Data;
 using Sprievodca.Models.MainModels;
+using Sprievodca.Repositories.Routes;
 
 namespace Sprievodca.Controllers
 {
     public class RouteController : Controller
     {
         private readonly SprievodcaDbContext _context;
+        private readonly IRouteRepository _routeRepository;
 
-        public RouteController(SprievodcaDbContext context)
+        public RouteController(SprievodcaDbContext context, IRouteRepository routeRepository)
         {
             _context = context;
+            _routeRepository = routeRepository;
         }
 
         // GET: Cesta

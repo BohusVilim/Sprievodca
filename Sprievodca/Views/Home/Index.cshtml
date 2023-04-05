@@ -6,51 +6,51 @@
     <h1 class="display-4">Sprievodca</h1>
 </div>
 
-@foreach (var kraj in ViewBag.kraj)
+@foreach (var region in ViewBag.Regions)
 {
-    <p><b>@kraj.Nazov</b></p>
-    @if (kraj.Oblast != null && kraj.Oblast.Count > 0)
+    <p><b>@region.Name</b></p>
+    @if (region.Areas != null && region.Areas.Count > 0)
     {
-         @foreach (var oblast in kraj.Oblast)
+        @foreach (var area in region.Areas)
          {
-             @if (oblast.Name != null)
+             @if (area.Name != null)
              {
-                <p class="oblast">@oblast.Name</p>
-                @if (oblast.ExistPodOblast == true)
+                <p class="oblast">@area.Name</p>
+                @if (area.ExistSubArea == true)
                 {
-                    @foreach (var podOblast in oblast.PodOblast)
+                    @foreach (var subArea in area.SubArea)
                     {
-                        <p class="podoblast"><i>@podOblast.Name</i></p>
-                        @if (podOblast.Sektor != null)
+                        <p class="podoblast"><i>@subArea.Name</i></p>
+                        @if (subArea.Sektor != null)
                         {
-                            @foreach (var sektor in podOblast.Sektor)
+                            @foreach (var sector in subArea.Sector)
                             {
-                                <p class="sektor">- @sektor.Name</p>
-                                <img class="sektor" decoding="async" src="@("~/images/"+sektor.ImageName)" asp-append-version="true" width="250px" height="auto" />
-                                @if (sektor.Cesta != null)
+                                <p class="sektor">- @sector.Name</p>
+                                <img class="sektor" decoding="async" src="@("~/images/"+sector.ImageName)" asp-append-version="true" width="250px" height="auto" />
+                                @if (sector.Cesta != null)
                                 {
-                                    @foreach (var cesta in sektor.Cesta)
+                                    @foreach (var route in sector.Route)
                                     {
-                                        <p class="sektor">@cesta.Number @cesta.Name <b>@cesta.Grade</b> @cesta.Lenght m  - <i>@cesta.Description</i> - @cesta.Author @cesta.Year</p>
+                                        <p class="sektor">@route.Number @route.Name <b>@route.Grade</b> @route.Lenght m  - <i>@route.Description</i> - @route.Author @route.Year</p>
                                     }
                                 }
                             }
                         }
                     }
                 }
-                @if (oblast.ExistPodOblast == false)
+                @if (area.ExistSubArea == false)
                 {
-                    @if (oblast.Sektor != null)
+                    @if (area.Sector != null)
                     {
-                        @foreach (var sektor in oblast.Sektor)
+                        @foreach (var sector in area.Sector)
                         {
-                            <p class ="podoblast">- @sektor.Name</p>
-                            <img class="sektor" decoding="async" src="@("~/images/"+sektor.ImageName)" asp-append-version="true" width="250px" height="auto" />
-                            @if (sektor.Cesta != null)
+                            <p class ="podoblast">- @sector.Name</p>
+                            <img class="sektor" decoding="async" src="@("~/images/"+sector.ImageName)" asp-append-version="true" width="250px" height="auto" />
+                            @if (sector.Route != null)
                             {
-                                @foreach (var cesta in sektor.Cesta)
+                                @foreach (var route in sector.Route)
                                 {
-                                    <p class="sektor">@cesta.Number @cesta.Name <b>@cesta.Grade</b> @cesta.Lenght m  - <i>@cesta.Description</i> - @cesta.Author @cesta.Year</p>
+                                    <p class="sektor">@route.Number @route.Name <b>@route.Grade</b> @route.Lenght m  - <i>@route.Description</i> - @route.Author @route.Year</p>
                                 }
                             }
                         }

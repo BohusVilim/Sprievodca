@@ -9,8 +9,8 @@ namespace Sprievodca.Data
             MockingGenerator mockingGenerator = new MockingGenerator(context);
             using var transaction = context.Database.BeginTransaction();
 
-            var kraje = mockingGenerator.CreateKraje();
-            context.Kraj.AddRange(kraje);
+            var regions = mockingGenerator.CreateRegions();
+            context.Regions.AddRange(regions);
             context.SaveChanges();
 
             transaction.Commit();

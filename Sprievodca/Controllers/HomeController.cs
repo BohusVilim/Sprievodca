@@ -18,11 +18,11 @@ namespace Sprievodca.Controllers
         
         public IActionResult Index()
         {
-            ViewBag.kraj = _context.Kraj.ToList();
-            ViewBag.oblast = _context.Oblast.ToList();
-            ViewBag.podOblast = _context.PodOblast.ToList();
-            ViewBag.sektor = _context.Sektor.ToList();
-            ViewBag.Cesta = _context.Cesta.ToList();
+            ViewBag.Regions = _context.Regions.ToList();
+            ViewBag.Areas = _context.Areas.ToList();
+            ViewBag.SubAreas = _context.SubAreas.ToList();
+            ViewBag.Sectors = _context.Sectors.ToList();
+            ViewBag.Routes = _context.Routes.ToList();
 
 
 

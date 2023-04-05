@@ -3,10 +3,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Sprievodca.Data;
 using Sprievodca.Models.MainModels;
+using Sprievodca.Repositories.Roads;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SprievodcaDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SprievodcaDbContext") ?? throw new InvalidOperationException("Connection string 'SprievodcaDbContext' not found.")));
+
+builder.Services.AddSingleton<RoadRepository>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

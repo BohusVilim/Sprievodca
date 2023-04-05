@@ -14,14 +14,14 @@ namespace Sprievodca.Data
             : base(options)
         {
         }
-        public DbSet<Kraj> Kraj { get; set; } = default!;
+        public DbSet<Region> Regions { get; set; } = default!;
 
-        public DbSet<Oblast> Oblast { get; set; }
+        public DbSet<Area> Areas { get; set; }
 
-        public DbSet<PodOblast> PodOblast { get; set; }
+        public DbSet<SubArea> SubAreas { get; set; }
 
-        public DbSet<Cesta> Cesta { get; set; }
+        public DbSet<Models.MainModels.Route> Routes { get; set; }
 
-        public DbSet<Sektor> Sektor { get; set; }
+        public DbSet<Sector> Sectors { get; set; }
     }
 }

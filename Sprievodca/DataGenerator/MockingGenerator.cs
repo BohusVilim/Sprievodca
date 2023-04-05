@@ -15,22 +15,22 @@ namespace Sprievodca.DataGenerator
             _existDb = _context.Database.EnsureCreated();
         }
 
-        public List<Kraj> CreateKraje()
+        public List<Region> CreateRegions()
         {
-            var kraje = new List<Kraj>();
+            var regions = new List<Region>();
 
-            if (_existDb == true || _context.Kraj.Count() < 1)
+            if (_existDb == true || _context.Regions.Count() < 1)
             {
-                kraje.Add(new Kraj { Nazov = "Bratislavský kraj" });
-                kraje.Add(new Kraj { Nazov = "Trnavský kraj" });
-                kraje.Add(new Kraj { Nazov = "Trenčiansky kraj" });
-                kraje.Add(new Kraj { Nazov = "Nitriansky kraj" });
-                kraje.Add(new Kraj { Nazov = "Žilinský kraj" });
-                kraje.Add(new Kraj { Nazov = "Banskobystrický kraj" });
-                kraje.Add(new Kraj { Nazov = "Prešovský kraj" });
-                kraje.Add(new Kraj { Nazov = "Košický kraj" }); 
+                regions.Add(new Region { Name = "Bratislavský kraj" });
+                regions.Add(new Region { Name = "Trnavský kraj" });
+                regions.Add(new Region { Name = "Trenčiansky kraj" });
+                regions.Add(new Region { Name = "Nitriansky kraj" });
+                regions.Add(new Region { Name = "Žilinský kraj" });
+                regions.Add(new Region { Name = "Banskobystrický kraj" });
+                regions.Add(new Region { Name = "Prešovský kraj" });
+                regions.Add(new Region { Name = "Košický kraj" }); 
             }
-            return kraje;
+            return regions;
         }
     }
 }

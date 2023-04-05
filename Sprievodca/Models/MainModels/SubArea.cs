@@ -9,7 +9,7 @@ namespace Sprievodca.Models.MainModels
         public string Name { get; set; } = null!;
 
         [DisplayName("Sektor")]
-        public IList<Sector>? Sector { get; set; }
+        public IList<Sector>? Sectors { get; set; }
 
         [DisplayName("Oblasť")]
         public Area Area { get; set; } = null!;

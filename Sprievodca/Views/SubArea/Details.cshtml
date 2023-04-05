@@ -17,12 +17,12 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Sector)
+            @Html.DisplayNameFor(model => model.Sectors)
         </dt>
         <dd class = "col-sm-10">
-            @if (Model.Sector != null)
+            @if (Model.Sectors != null)
             {
-                @foreach (var sector in Model.Sector)
+                @foreach (var sector in Model.Sectors)
                 {
                     @sector.Name
                 }

@@ -20,7 +20,7 @@
                 @Html.DisplayNameFor(model => model.Region)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SubArea) / @Html.DisplayNameFor(model => model.Sector)
+                @Html.DisplayNameFor(model => model.SubArea) / @Html.DisplayNameFor(model => model.Sectors)
             </th>
         </tr>
     </thead>
@@ -66,13 +66,13 @@
                         
                     </td>
                 }
-                @if (item.Sector != null && item.Sector.Count > 0)
+                @if (item.Sectors != null && item.Sectors.Count > 0)
                 {
                     <td>
                         <select class="form-control" onchange="window.location.href=this.value;">
                             <option value="">-- Vyber sektor --</option>
                             @{
-                                foreach (var sector in item.Sector)
+                                foreach (var sector in item.Sectors)
                                 {
                                     if (sector.Name != null)
                                     {

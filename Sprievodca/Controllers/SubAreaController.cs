@@ -22,7 +22,7 @@ namespace Sprievodca.Controllers
         // GET: SubArea
         public async Task<IActionResult> Index()
         {
-              return View(await _context.SubAreas.Include(a => a.Area).Include(b => b.Sector).ToListAsync());
+              return View(await _context.SubAreas.Include(a => a.Area).Include(b => b.Sectors).ToListAsync());
         }
 
         // GET: SubArea/Details/5
@@ -33,7 +33,7 @@ namespace Sprievodca.Controllers
                 return NotFound();
             }
 
-            var subArea = await _context.SubAreas.Include(a => a.Sector)
+            var subArea = await _context.SubAreas.Include(a => a.Sectors)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (subArea == null)
             {
@@ -46,7 +46,7 @@ namespace Sprievodca.Controllers
         // GET: SubArea/Create
         public IActionResult Create()
         {
-            var areas = _context.Areas.ToList();
+            var areas = _context.Areas.Where(a => a.ExistSubArea == true).ToList();
             ViewBag.Areas = new SelectList(areas, "Id", "Name");
 
             return View();
@@ -57,7 +57,7 @@ namespace Sprievodca.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Sector,Area,AreaId")] SubArea subArea)
+        public async Task<IActionResult> Create([Bind("Id,Name,Sectors,Area,AreaId")] SubArea subArea)
         {
             subArea.Area = _context.Areas.Find(subArea.AreaId);
 
@@ -68,7 +68,7 @@ namespace Sprievodca.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            var areas = _context.Areas.ToList();
+            var areas = _context.Areas.Where(a => a.ExistSubArea == true).ToList();
             ViewBag.Areas = new SelectList(areas, "Id", "Name", subArea.AreaId);
 
             return View(subArea);

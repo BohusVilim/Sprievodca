@@ -37,13 +37,13 @@
             </dd>
         }
 
-        @if (Model.Sector != null && Model.Sector.Count > 0)
+        @if (Model.Sectors != null && Model.Sectors.Count > 0)
         {
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Sector)
+                @Html.DisplayNameFor(model => model.Sectors)
             </dt>
             <dd class="col-sm-10">
-                @foreach (var sektor in Model.Sector)
+                @foreach (var sektor in Model.Sectors)
                 {
                     @Html.DisplayFor(model => sektor.Name)
                     <br/>

@@ -16,20 +16,20 @@
              @if (area.Name != null)
              {
                 <p class="oblast">@area.Name</p>
-                @if (area.ExistSubArea == true)
+                @if (area.ExistSubArea == true && area.SubArea != null)
                 {
                     @foreach (var subArea in area.SubArea)
                     {
                         <p class="podoblast"><i>@subArea.Name</i></p>
-                        @if (subArea.Sektor != null)
+                        @if (subArea.Sectors != null)
                         {
-                            @foreach (var sector in subArea.Sector)
+                            @foreach (var sector in subArea.Sectors)
                             {
                                 <p class="sektor">- @sector.Name</p>
                                 <img class="sektor" decoding="async" src="@("~/images/"+sector.ImageName)" asp-append-version="true" width="250px" height="auto" />
-                                @if (sector.Cesta != null)
+                                @if (sector.Routes != null)
                                 {
-                                    @foreach (var route in sector.Route)
+                                    @foreach (var route in sector.Routes)
                                     {
                                         <p class="sektor">@route.Number @route.Name <b>@route.Grade</b> @route.Lenght m  - <i>@route.Description</i> - @route.Author @route.Year</p>
                                     }
@@ -40,15 +40,15 @@
                 }
                 @if (area.ExistSubArea == false)
                 {
-                    @if (area.Sector != null)
+                    @if (area.Sectors != null)
                     {
-                        @foreach (var sector in area.Sector)
+                        @foreach (var sector in area.Sectors)
                         {
                             <p class ="podoblast">- @sector.Name</p>
                             <img class="sektor" decoding="async" src="@("~/images/"+sector.ImageName)" asp-append-version="true" width="250px" height="auto" />
-                            @if (sector.Route != null)
+                            @if (sector.Routes != null)
                             {
-                                @foreach (var route in sector.Route)
+                                @foreach (var route in sector.Routes)
                                 {
                                     <p class="sektor">@route.Number @route.Name <b>@route.Grade</b> @route.Lenght m  - <i>@route.Description</i> - @route.Author @route.Year</p>
                                 }

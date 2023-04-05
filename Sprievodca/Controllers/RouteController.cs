@@ -57,12 +57,12 @@ namespace Sprievodca.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Number,Name,Grade,Lenght,Style,Description,Author,Year,Sektor,SektorId")] Models.MainModels.Route route)
+        public async Task<IActionResult> Create([Bind("Id,Number,Name,Grade,Lenght,Style,Description,Author,Year,Sector,SectorId")] Models.MainModels.Route route)
         {
 
             route.Sector = _context.Sectors.Find(route.SectorId);
 
-            ModelState.Remove("Sektor");
+            ModelState.Remove("Sector");
             if (ModelState.IsValid)
             {
                 _context.Add(route);

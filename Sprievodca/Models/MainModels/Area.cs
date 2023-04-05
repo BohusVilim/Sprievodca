@@ -16,7 +16,7 @@ namespace Sprievodca.Models.MainModels
         public bool ExistSubArea { get; set; }
 
         [DisplayName("Sektor")]
-        public IList<Sector>? Sector { get; set; }
+        public IList<Sector>? Sectors { get; set; }
 
         [DisplayName("Kraj")]
         public Region Region { get; set; } = null!;

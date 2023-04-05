@@ -24,7 +24,7 @@ namespace Sprievodca.Controllers
         // GET: Area
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Areas.Include(a => a.Region).Include(b => b.SubArea).Include(c => c.Sector).ToListAsync());
+            return View(await _context.Areas.Include(a => a.Region).Include(b => b.SubArea).Include(c => c.Sectors).ToListAsync());
         }
 
         // GET: Area/Details/5
@@ -38,7 +38,7 @@ namespace Sprievodca.Controllers
             var area = await _context.Areas
                 .Include(a => a.Region)
                 .Include(b => b.SubArea)
-                .Include(c => c.Sector)
+                .Include(c => c.Sectors)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (area == null)
             {
@@ -62,7 +62,7 @@ namespace Sprievodca.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,SubArea,Region,RegionId,ExistSubArea,Sector")] Area area)
+        public async Task<IActionResult> Create([Bind("Id,Name,SubArea,Region,RegionId,ExistSubArea,Sectors")] Area area)
         {
             area.Region = _context.Regions.Find(area.RegionId);
 
@@ -78,7 +78,7 @@ namespace Sprievodca.Controllers
                     area.ExistSubArea = false;
                 }
 
-                area.Sector = _context.Sectors.Where(a => a.AreaId == area.Id).ToList();
+                area.Sectors = _context.Sectors.Where(a => a.AreaId == area.Id).ToList();
 
                 _context.Add(area);
                 await _context.SaveChangesAsync();

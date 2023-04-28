@@ -14,12 +14,10 @@ namespace Sprievodca.Controllers
     public class RouteController : Controller
     {
         private readonly SprievodcaDbContext _context;
-        private readonly IRouteRepository _routeRepository;
 
-        public RouteController(SprievodcaDbContext context, IRouteRepository routeRepository)
+        public RouteController(SprievodcaDbContext context)
         {
             _context = context;
-            _routeRepository = routeRepository;
         }
 
         // GET: Cesta

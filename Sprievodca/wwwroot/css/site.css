@@ -13,18 +13,3 @@ html {
   min-height: 100%;
 }
 
-body {
-  margin-bottom: 60px;
-}
-
-.oblast {
-    margin-left: 20px;
-}
-
-.podoblast {
-    margin-left: 40px;
-}
-
-.sektor {
-    margin-left: 60px;
-}

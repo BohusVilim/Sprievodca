@@ -8,55 +8,82 @@
 
 @foreach (var region in ViewBag.Regions)
 {
-    <p><b>@region.Name</b></p>
-    @if (region.Areas != null && region.Areas.Count > 0)
-    {
-        @foreach (var area in region.Areas)
-         {
-             @if (area.Name != null)
-             {
-                <p class="oblast">@area.Name</p>
-                @if (area.ExistSubArea == true && area.SubArea != null)
-                {
-                    @foreach (var subArea in area.SubArea)
+    <p class="toggle-region" style="cursor: pointer;"><b>@region.Name</b></p>
+    <div class="region-details" style="display: none; margin-left: 20px;">
+        @if (region.Areas != null && region.Areas.Count > 0)
+        {
+            @foreach (var area in region.Areas)
+            {
+                <p class="toggle-area" style="cursor: pointer;"><b>@area.Name</b></p>
+                <div class="area-details" style="display: none; margin-left: 40px;">
+                    @if (area.ExistSubArea == true && area.SubArea != null)
                     {
-                        <p class="podoblast"><i>@subArea.Name</i></p>
-                        @if (subArea.Sectors != null)
+                        @foreach (var subArea in area.SubArea)
                         {
-                            @foreach (var sector in subArea.Sectors)
-                            {
-                                <p class="sektor">- @sector.Name</p>
-                                <img class="sektor" decoding="async" src="@("~/images/"+sector.ImageName)" asp-append-version="true" width="250px" height="auto" />
-                                @if (sector.Routes != null)
+                            <p class="toggle-subarea" style="cursor: pointer;"><i>@subArea.Name</i></p>
+                            <div class="subarea-details" style="display: none; margin-left: 60px;">
+                                @if (subArea.Sectors != null)
                                 {
-                                    @foreach (var route in sector.Routes)
+                                    @foreach (var sector in subArea.Sectors)
                                     {
-                                        <p class="sektor">@route.Number @route.Name <b>@route.Grade</b> @route.Lenght m  - <i>@route.Description</i> - @route.Author @route.Year</p>
+                                        <p class="toggle-sector" style="cursor: pointer;">- @sector.Name</p>
+                                        <div class="sector-details" style="display: none; margin-left: 80px;">
+                                            <img decoding="async" src="@("~/images/"+sector.ImageName)" asp-append-version="true" width="250px" height="auto" style="text-align: left"/>
+                                            @if (sector.Routes != null)
+                                            {
+                                                @foreach (var route in sector.Routes)
+                                                {
+                                                    <p>@route.Number @route.Name <b>@route.Grade</b> @route.Lenght m  - <i>@route.Description</i> - @route.Author @route.Year</p>
+                                                }
+                                            }
+                                        </div>
                                     }
                                 }
-                            }
+                            </div>
                         }
                     }
-                }
-                @if (area.ExistSubArea == false)
-                {
-                    @if (area.Sectors != null)
+                    @if (area.ExistSubArea == false)
                     {
-                        @foreach (var sector in area.Sectors)
+                        @if (area.Sectors != null)
                         {
-                            <p class ="podoblast">- @sector.Name</p>
-                            <img class="sektor" decoding="async" src="@("~/images/"+sector.ImageName)" asp-append-version="true" width="250px" height="auto" />
-                            @if (sector.Routes != null)
+                            @foreach (var sector in area.Sectors)
                             {
-                                @foreach (var route in sector.Routes)
-                                {
-                                    <p class="sektor">@route.Number @route.Name <b>@route.Grade</b> @route.Lenght m  - <i>@route.Description</i> - @route.Author @route.Year</p>
-                                }
+                                <p class="toggle-sector" style="cursor: pointer;">- @sector.Name</p>
+                                <div class="sector-details" style="display: none; margin-left: 60px;">
+                                    <img decoding="async" src="@("~/images/"+sector.ImageName)" asp-append-version="true" width="250px" height="auto" />
+                                    @if (sector.Routes != null)
+                                    {
+                                        @foreach (var route in sector.Routes)
+                                        {
+                                            <p>@route.Number @route.Name <b>@route.Grade</b> @route.Lenght m  - <i>@route.Description</i> - @route.Author @route.Year</p>
+                                        }
+                                    }
+                                </div>
                             }
                         }
                     }
-                }
+                </div>
             }
-         }
-    }
-}        
+        }
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        $(".toggle-region").click(function () {
+            $(this).next(".region-details").slideToggle();
+        });
+
+        $(".toggle-area").click(function () {
+            $(this).next(".area-details").slideToggle();
+        });
+
+        $(".toggle-subarea").click(function () {
+            $(this).next(".subarea-details").slideToggle();
+        });
+
+        $(".toggle-sector").click(function () {
+            $(this).next(".sector-details").slideToggle();
+        });
+    });
+</script>

@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Sprievodca.Controllers;
 using Sprievodca.Data;
+using Sprievodca.DataGenerator;
 using Sprievodca.Models.MainModels;
 using Sprievodca.Repositories.Routes;
 
@@ -10,6 +12,14 @@ builder.Services.AddDbContext<SprievodcaDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SprievodcaDbContext") ?? throw new InvalidOperationException("Connection string 'SprievodcaDbContext' not found.")));
 
 builder.Services.AddScoped<RouteRepository>();
+builder.Services.AddScoped<AreaController>();
+builder.Services.AddScoped<HomeController>();
+builder.Services.AddScoped<RegionController>();
+builder.Services.AddScoped<RouteController>();
+builder.Services.AddScoped<SectorController>();
+builder.Services.AddScoped<SubAreaController>();
+
+builder.Services.AddScoped<MockingGenerator>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

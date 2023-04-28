@@ -22,7 +22,9 @@ namespace Sprievodca.Controllers
         // GET: SubArea
         public async Task<IActionResult> Index()
         {
-              return View(await _context.SubAreas.Include(a => a.Area).Include(b => b.Sectors).ToListAsync());
+            ViewBag.Areas = _context.Areas.Where(a => a.ExistSubArea == true);
+
+            return View(await _context.SubAreas.Include(a => a.Area).Include(b => b.Sectors).ToListAsync());
         }
 
         // GET: SubArea/Details/5

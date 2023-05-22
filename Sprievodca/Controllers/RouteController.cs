@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Sprievodca.Data;
 using Sprievodca.Models.MainModels;
-using Sprievodca.Repositories.Routes;
 
 namespace Sprievodca.Controllers
 {

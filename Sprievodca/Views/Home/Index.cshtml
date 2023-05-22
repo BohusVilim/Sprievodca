@@ -1,10 +1,11 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
 <div class="text-center">
     <h1 class="display-4">Sprievodca</h1>
 </div>
+
+<div id="background"></div>
 
 @foreach (var region in ViewBag.Regions)
 {
@@ -26,9 +27,9 @@
                                 {
                                     @foreach (var sector in subArea.Sectors)
                                     {
-                                        <p class="toggle-sector" style="cursor: pointer;">- @sector.Name</p>
+                                        <p class="open-modal" style="cursor: pointer;">- <span class="sector-name">@sector.Name</span></p>
                                         <div class="sector-details" style="display: none; margin-left: 80px;">
-                                            <img decoding="async" src="@("~/images/"+sector.ImageName)" asp-append-version="true" width="250px" height="auto" style="text-align: left"/>
+                                            <img decoding="async" src="@("~/images/"+sector.ImageName)" asp-append-version="true" width="100%" height="auto" style="text-align: left" />
                                             @if (sector.Routes != null)
                                             {
                                                 @foreach (var route in sector.Routes)
@@ -48,9 +49,9 @@
                         {
                             @foreach (var sector in area.Sectors)
                             {
-                                <p class="toggle-sector" style="cursor: pointer;">- @sector.Name</p>
+                                <p class="open-modal" style="cursor: pointer;">- <span class="sector-name">@sector.Name</span></p>
                                 <div class="sector-details" style="display: none; margin-left: 60px;">
-                                    <img decoding="async" src="@("~/images/"+sector.ImageName)" asp-append-version="true" width="250px" height="auto" />
+                                    <img decoding="async" src="@("~/images/"+sector.ImageName)" asp-append-version="true" width="100%" height="auto" />
                                     @if (sector.Routes != null)
                                     {
                                         @foreach (var route in sector.Routes)
@@ -68,6 +69,20 @@
     </div>
 }
 
+<div id="myModal" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="sectorModalTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="modal-sector-details"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     $(document).ready(function () {
         $(".toggle-region").click(function () {
@@ -82,8 +97,22 @@
             $(this).next(".subarea-details").slideToggle();
         });
 
-        $(".toggle-sector").click(function () {
-            $(this).next(".sector-details").slideToggle();
+        $(".open-modal").click(function () {
+            var sectorName = $(this).find('.sector-name').text();
+            var sectorDetails = $(this).next('.sector-details').html();
+            $('#modal-sector-details').html(sectorDetails);
+            $('#sectorModalTitle').text(sectorName);
+            $('#myModal').css('display', 'block');
+        });
+
+        $(".close").click(function () {
+            $('#myModal').css('display', 'none');
+        });
+
+        $(window).click(function (event) {
+            if (event.target == $('#myModal')[0]) {
+                $('#myModal').css('display', 'none');
+            }
         });
     });
 </script>
